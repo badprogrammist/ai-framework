@@ -1,4 +1,4 @@
-package core 
+package com.badprogrammist.examples.microworld
 {
 	import flash.display.Sprite;
 	

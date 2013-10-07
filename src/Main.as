@@ -1,12 +1,11 @@
 package 
 {
-	import core.agent.Agent;
-	import core.agent.Rabbit;
-	import core.environment.Environment;
-	import core.environment.restriction.Position;
-	import core.environment.restriction.Size;
-	import core.environment.Subject;
-	import flash.display.Sprite;
+    import com.badprogrammist.examples.microworld.agent.Rabbit;
+    import com.badprogrammist.examples.microworld.environment.Environment;
+    import com.badprogrammist.examples.microworld.environment.Subject;
+    import com.badprogrammist.examples.microworld.environment.restriction.Position;
+
+    import flash.display.Sprite;
 	import flash.events.Event;
 	import flash.events.TimerEvent;
 	import flash.utils.Timer;

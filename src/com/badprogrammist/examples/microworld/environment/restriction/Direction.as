@@ -1,6 +1,6 @@
-package core.environment.restriction 
+package com.badprogrammist.examples.microworld.environment.restriction
 {
-	import core.Graphic;
+	import com.badprogrammist.examples.microworld.Graphic;
 	import flash.display.Sprite;
 	/**
 	 * ...

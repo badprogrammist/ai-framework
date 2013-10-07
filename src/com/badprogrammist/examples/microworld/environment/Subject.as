@@ -1,9 +1,9 @@
-package core.environment 
+package com.badprogrammist.examples.microworld.environment
 {
-	import core.environment.restriction.Position;
-	import core.environment.restriction.Size;
-	import core.Graphic;
-	import flash.display.DisplayObjectContainer;
+    import com.badprogrammist.examples.microworld.environment.restriction.Position;
+    import com.badprogrammist.examples.microworld.environment.restriction.Size;
+
+	import com.badprogrammist.examples.microworld.Graphic;
 	import flash.display.Sprite;
 	
 	/**

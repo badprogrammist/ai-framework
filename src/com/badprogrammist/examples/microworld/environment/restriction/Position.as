@@ -1,6 +1,6 @@
-package core.environment.restriction 
+package com.badprogrammist.examples.microworld.environment.restriction
 {
-	import core.environment.Environment;
+    import com.badprogrammist.examples.microworld.environment.Environment;
 	/**
 	 * ...
 	 * @author Ildar Gafarov badprogrammist@gmail.com

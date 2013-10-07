@@ -1,7 +1,7 @@
-package core.agent 
+package com.badprogrammist.examples.microworld.agent
 {
-	import core.environment.restriction.Position;
-	import core.environment.restriction.Size;
+    import com.badprogrammist.examples.microworld.environment.restriction.Position;
+    import com.badprogrammist.examples.microworld.environment.restriction.Size;
 	/**
 	 * ...
 	 * @author Ildar Gafarov badprogrammist@gmail.com
