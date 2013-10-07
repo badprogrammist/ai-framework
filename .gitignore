@@ -3,7 +3,8 @@ bin/
 bin-debug/
 bin-release/
 obj/
-Settlers.as3proj
+.idea
+ai-framework.iml
 
 # Other files and folders
 .settings/
