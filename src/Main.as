@@ -1,5 +1,6 @@
 package 
 {
+    import com.badprogrammist.examples.hoovier.HoovierWorld;
     import com.badprogrammist.examples.microworld.agent.Rabbit;
     import com.badprogrammist.examples.microworld.environment.Environment;
     import com.badprogrammist.examples.microworld.environment.Subject;
@@ -16,9 +17,7 @@ package
 	 */
 	public class Main extends Sprite 
 	{
-		private var _timer:Timer = new Timer(500);
-		private var _environment:Environment;
-		private var _testSubject:Subject;
+
 		public function Main():void 
 		{
 			if (stage) init();
@@ -29,24 +28,15 @@ package
 		{
 			removeEventListener(Event.ADDED_TO_STAGE, init);
 			// entry point
-			
-			_environment = new Environment(stage.stageWidth, stage.stageHeight);
-			this.addChild(_environment.displayObject);
-			_timer.addEventListener(TimerEvent.TIMER, onTimerStep);
-			_timer.start();
-			
-			_testSubject = new Rabbit(new Position(0, 0));
-			
-			_environment.addSubject(_testSubject);
+
+            var hoovierWorld:HoovierWorld = new HoovierWorld();
+            hoovierWorld.start();
+
 			
 			
 		}
 		
-		private function onTimerStep(e:TimerEvent):void
-		{
-			//_testSubject.position.xCount += 1;
-			_environment.step();
-		}
+
 		
 	}
 	
