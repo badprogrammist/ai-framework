@@ -6,39 +6,37 @@
  * E-mail: badprogrammist@gmail.com
  */
 package com.badprogrammist.examples.hoovier.action {
+    import com.badprogrammist.ai.Subject;
+    import com.badprogrammist.ai.agent.action.AbstractAction;
     import com.badprogrammist.examples.hoovier.Hoovier;
     import com.badprogrammist.examples.hoovier.Room;
-    import com.badprogrammist.examples.hoovier.Space;
-    import com.badprogrammist.examples.hoovier.Subject;
+    import com.badprogrammist.examples.hoovier.sensor.CurrentRoomSensor;
 
-    public class GoAnotherRoom implements Action {
+    public class GoAnotherRoom extends AbstractAction {
+
         public function GoAnotherRoom() {
         }
 
-        public function execute(subject:Subject):Boolean {
+        override public function execute():Boolean {
             var success:Boolean = false;
-            var hoovier:Hoovier = subject as Hoovier;
-            var currentRoom:Room = hoovier.currentSpace as Room;
+            var currentRoom:Room = agent.sensorManager.getSensor(CurrentRoomSensor).result as Room;
             var anotherRoom:Room;
-            var parentSpace:Space = currentRoom.currentParentSpace;
-            if (parentSpace) {
-                for (var i:int = 0; i < parentSpace.subjects.length; i++) {
-                    if (parentSpace.subjects[i] is Room) {
-                        if (parentSpace.subjects[i] != currentRoom) {
-                            currentRoom.removeSubject(subject);
-                            anotherRoom = parentSpace.subjects[i] as Room;
-                            anotherRoom.addSubject(subject);
-                            trace ("go from ",currentRoom.name," to ",anotherRoom.name);
-                            break;
+            if (currentRoom != null) {
+                for each(var s:Subject in agent.space.subjects) {
+                    if (s is Room) {
+                        var r:Room = s as Room;
+                        if (r != currentRoom) {
+                            anotherRoom = r;
                         }
                     }
                 }
                 if (anotherRoom != null) {
-                    if (currentRoom.contain(subject) == false && anotherRoom.contain(subject)) {
-                        success = true;
-                    }
+                    currentRoom.hoovier = null;
+                    anotherRoom.hoovier = agent as Hoovier;
+                    success = true;
                 }
             }
+            trace("go another room");
             return success;
         }
     }

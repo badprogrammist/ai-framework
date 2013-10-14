@@ -6,8 +6,28 @@
  * E-mail: badprogrammist@gmail.com
  */
 package com.badprogrammist.ai.agent {
-    public class Agent {
+    import com.badprogrammist.ai.Subject;
+    import com.badprogrammist.ai.agent.action.ActionManager;
+    import com.badprogrammist.ai.agent.sensor.SensorManager;
+
+    public class Agent extends Subject {
+
+        private var _sensorManager:SensorManager;
+        private var _actionManager:ActionManager;
+
+
         public function Agent() {
+            _sensorManager = new SensorManager(this);
+            _actionManager = new ActionManager(this);
+
+        }
+
+        public function get sensorManager():SensorManager {
+            return _sensorManager;
+        }
+
+        public function get actionManager():ActionManager {
+            return _actionManager;
         }
     }
 }

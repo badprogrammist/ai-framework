@@ -1,13 +1,17 @@
 /**
  *
  * User: Ildar Gafarov
- * Date: 07.10.13
- * Time: 23:26
+ * Date: 08.10.13
+ * Time: 19:44
  * E-mail: badprogrammist@gmail.com
  */
 package com.badprogrammist.ai.agent.action {
-    public class Action {
-        public function Action() {
-        }
+    import com.badprogrammist.ai.agent.Agent;
+
+    public interface Action {
+
+        function execute():Boolean;
+        function get agent():Agent;
+        function set agent(value:Agent):void;
     }
 }

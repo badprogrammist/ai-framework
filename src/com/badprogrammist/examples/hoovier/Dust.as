@@ -6,11 +6,10 @@
  * E-mail: badprogrammist@gmail.com
  */
 package com.badprogrammist.examples.hoovier {
-    public class Dust implements Subject {
-        public function Dust() {
-        }
+    import com.badprogrammist.ai.Subject;
 
-        public function update(space:Space):void {
+    public class Dust extends Subject {
+        public function Dust() {
         }
     }
 }

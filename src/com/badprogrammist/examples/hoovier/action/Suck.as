@@ -6,29 +6,28 @@
  * E-mail: badprogrammist@gmail.com
  */
 package com.badprogrammist.examples.hoovier.action {
+    import com.badprogrammist.ai.agent.action.AbstractAction;
     import com.badprogrammist.examples.hoovier.Dust;
     import com.badprogrammist.examples.hoovier.Hoovier;
     import com.badprogrammist.examples.hoovier.Room;
-    import com.badprogrammist.examples.hoovier.Subject;
+    import com.badprogrammist.examples.hoovier.sensor.CurrentRoomSensor;
 
-    public class Suck implements Action {
+    public class Suck extends AbstractAction{
         public function Suck() {
         }
 
-        public function execute(subject:Subject):Boolean {
+        override public function execute():Boolean {
             var success:Boolean = false;
-            var hoovier:Hoovier = subject as Hoovier;
-            for (var i:int = 0; i < hoovier.currentSpace.subjects.length; i++) {
-                if(hoovier.currentSpace.subjects[i] is Dust) {
-                    var dust:Dust = hoovier.currentSpace.subjects[i] as Dust;
-                    hoovier.currentSpace.removeSubject(dust);
-                    if (hoovier.currentSpace.contain(dust) == false) {
-                        success = true;
-                    }
-                    trace("clean room: ", (hoovier.currentSpace as Room).name);
-                    break;
+            var currentRoom:Room = agent.sensorManager.getSensor(CurrentRoomSensor).result as Room;
+            if (currentRoom != null) {
+                if(currentRoom.dust == null) {
+                    success = false;
+                } else {
+                    success = true;
                 }
+                currentRoom.dust = null;
             }
+            trace("suck");
             return success;
         }
     }

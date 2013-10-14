@@ -6,6 +6,8 @@
  * E-mail: badprogrammist@gmail.com
  */
 package com.badprogrammist.examples.hoovier {
+    import com.badprogrammist.ai.Space;
+
     import flash.events.TimerEvent;
     import flash.utils.Timer;
 
@@ -23,7 +25,9 @@ package com.badprogrammist.examples.hoovier {
             _timer.addEventListener(TimerEvent.TIMER, step);
             var leftRoom:Room = new Room("room 1");
             var rightRoom:Room = new Room("room 2");
-            leftRoom.addSubject(new Hoovier());
+            var hoovier:Hoovier = new Hoovier();
+            leftRoom.hoovier = hoovier;
+            addSubject(hoovier);
             addSubject(leftRoom);
             addSubject(rightRoom);
         }
@@ -33,7 +37,7 @@ package com.badprogrammist.examples.hoovier {
         }
 
         private function step(e:TimerEvent):void {
-            update(null);
+            updateSubjects();
             trace("-------- end step --------");
         }
 

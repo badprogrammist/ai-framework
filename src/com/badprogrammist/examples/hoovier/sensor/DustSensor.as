@@ -7,25 +7,27 @@
  */
 package com.badprogrammist.examples.hoovier.sensor {
 
+    import com.badprogrammist.ai.agent.sensor.AbstractSensor;
     import com.badprogrammist.examples.hoovier.Dust;
-    import com.badprogrammist.examples.hoovier.Space;
-    import com.badprogrammist.examples.hoovier.Subject;
+    import com.badprogrammist.ai.Subject;
+    import com.badprogrammist.examples.hoovier.Room;
 
-    public class DustSensor implements Sensor {
+    public class DustSensor extends AbstractSensor {
 
-        public function DustSensor() {
-        }
+        private var _dust:Dust;
 
-        public function scan(space:Space):Subject {
-            for (var i:int = 0; i < space.subjects.length; i++) {
-                if(space.subjects[i] is Dust) {
-                    return space.subjects[i];
+        override public function scan(subject:Subject):void {
+            if (subject is Room) {
+                var r:Room = subject as Room;
+                if (r.dust != null) {
+                    _dust = r.dust;
                 }
             }
-            return null;
         }
 
 
-
+        override public function get result():Subject {
+            return _dust;
+        }
     }
 }

@@ -6,43 +6,48 @@
  * E-mail: badprogrammist@gmail.com
  */
 package com.badprogrammist.examples.hoovier {
-    public class Room extends Space {
+
+    import com.badprogrammist.ai.Subject;
+
+    public class Room extends Subject {
+
         private var _name:String;
+        private var _dust:Dust;
+        private var _hoovier:Hoovier;
 
         public function Room(name:String) {
             _name = name;
         }
 
-        override public function update(space:Space):void {
+        override public function update():void {
             generateDust();
-            super.update(space);
-            trace("subjects in ",_name, ":",subjects);
+            trace("in ",_name, ": ",_dust, _hoovier);
         }
 
         private function generateDust():void {
-            var isClean:Boolean = true;
-            for (var i:int = 0; i < subjects.length; i++) {
-                if(subjects[i] is Dust) {
-                    isClean = false;
-                    break;
-                }
+            if (_dust == null && Math.random() >= 0.5) {
+                _dust = new Dust();
             }
-            if (isClean) {
-                if (generateRandomBin()) {
-                    addSubject(new Dust());
-                    trace("new dust in ",_name);
-                }
-            }
-
         }
-
-        private function generateRandomBin():Boolean {
-            return Math.random() >= 0.5;
-        }
-
 
         public function get name():String {
             return _name;
+        }
+
+        public function get dust():Dust {
+            return _dust;
+        }
+
+        public function get hoovier():Hoovier {
+            return _hoovier;
+        }
+
+        public function set hoovier(value:Hoovier):void {
+            _hoovier = value;
+        }
+
+        public function set dust(value:Dust):void {
+            _dust = value;
         }
     }
 }
